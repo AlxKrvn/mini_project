@@ -22,40 +22,27 @@ def if_not(ans, symb):
                 chars = chars[:chars.index(i)] + chars[chars.index(i)+1:]
     return chars
 def password_gen(lengh, symb):
+    def need_1(ans, smbl):
 
+        nonlocal a
+        if ans:
+            for i in p:
+                if i in smbl:
+                    a -= 1
+                    break
+        else:
+            a -=1   
+        return a 
+    
     a = 4
     while a != 0:
 
         a = 4
         p = sample(symb, lengh)
-        if need_dig:
-            for i in p:
-                if i in dig:
-                    a -= 1
-                    break
-        else:
-            a -=1        
-        if need_low:
-            for i in p:
-                if i in low_lett:
-                    a -= 1
-                    break
-        else:
-            a -= 1
-        if need_upp:
-            for i in p:
-                if i in upp_lett:
-                    a -= 1
-                    break
-        else:
-            a -= 1            
-        if need_punct:
-            for i in p:
-                if i in punct:
-                    a -= 1
-                    break
-        else:
-            a -= 1
+        a = need_1(need_dig, dig)
+        a = need_1(need_low, low_lett)
+        a = need_1(need_upp, upp_lett)            
+        a = need_1(need_punct, punct)
 
     p = ''.join(p)
     return p
